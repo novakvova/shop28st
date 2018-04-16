@@ -50,6 +50,7 @@ namespace BLL.Services
 
             //Тип з BLL
             builder.RegisterType<AccountProvider>().As<IAccountProvider>().InstancePerRequest();
+            builder.RegisterType<UserProvider>().As<IUserProvider>().InstancePerRequest();
 
             base.Load(builder);
         }
