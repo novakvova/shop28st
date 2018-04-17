@@ -2,6 +2,7 @@
 using BLL.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,9 +31,16 @@ namespace WebShop.Controllers
         [HttpPost]
         public ActionResult Create(UserCreateViewModel model)
         {
-            //розмір фотки
-            var fileSize = model.Image.ContentLength;
-           // var model = new UserCreateViewModel();
+            if (ModelState.IsValid)
+            {
+                string pathServer = ConfigurationManager.AppSettings["UserImagePath"];
+                string path = Server.MapPath(pathServer);
+                int id = _userProvider.Create(model, path);
+                if(id!=0)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
             return View(model);
         }
     }

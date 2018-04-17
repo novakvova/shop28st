@@ -9,6 +9,7 @@ namespace BLL.Abstract
 {
     public interface IUserProvider
     {
-        List<UserViewModel> GetUsers(bool isActive = true); 
+        List<UserViewModel> GetUsers(bool isActive = true);
+        int Create(UserCreateViewModel userCreate, string path);
     }
 }
